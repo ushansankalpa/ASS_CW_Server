@@ -12,7 +12,7 @@ class UserModel extends CI_Model{
         //     return $this->db->get_where('users', ['id' => $id])->result_array();
         // }
         // $this->db->where('id', $id);
-        $query = $this->db->get_where('users',array('id' => $id));
+        $query = $this->db->get_where('users',array('user_id' => $id));
         return $query->result_array();
     }
 
@@ -22,13 +22,13 @@ class UserModel extends CI_Model{
     }
 
     public function updateUser($data, $id){
-        $this->db->where('id', $id);
+        $this->db->where('user_id', $id);
         //$this->db->update('users', $data, ['id' => $id]);
         return  $this->db->update('users', $data);
     }
 
     public function deleteUser($id){
-        $this->db->delete('users', ['id' => $id]);
+        $this->db->delete('users', ['user_id' => $id]);
         return $this->db->affected_rows();
     }
 

@@ -30,7 +30,8 @@ class ApiQuestionController extends Rest_Controller {
             'question_title' => $this->post('question_title'),
             'question_des' => $this->post('question_des'),
             'question_img' => $this->post('question_img'),
-            'id' => $id,
+            'question_votes' => 0,
+            'user_id' => $id,
         ];
         $res = $this->QuestionModel->createQuestion($data);
         if( $res > 0){
@@ -86,6 +87,37 @@ class ApiQuestionController extends Rest_Controller {
                     'message' => 'id not found'
                 ], Rest_Controller::HTTP_BAD_REQUEST);
             }
+        }
+    }
+
+    public function upVote_put($id){
+        //$question_id = $this->post('question_id');
+        
+        if($this->QuestionModel->upVote($id) > 0){
+            $this->response([
+                'status' => true,
+                'message' => 'data has been updated'
+            ], Rest_Controller::HTTP_NO_CONTENT);
+        }else{
+            $this->response([
+                'status' => false,
+                'message' => 'failed to update data'
+            ], Rest_Controller::HTTP_BAD_REQUEST);
+        }
+    }
+
+    public function upvote_get(){
+        $votes = $this->QuestionModel->getUpvotes();
+        if($votes){
+            $this->response([
+                'status' => true,
+                'data' => $votes
+            ], Rest_Controller::HTTP_OK);
+        }else{
+            $this->response([
+                'status' => false,
+                'message' => 'id not found'
+            ], Rest_Controller::HTTP_NOT_FOUND);
         }
     }
 }

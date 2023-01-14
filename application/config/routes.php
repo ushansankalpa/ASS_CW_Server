@@ -63,3 +63,7 @@ $route['api/quesion/create/(:any)'] = 'api/ApiQuestionController/index/$1';
 $route['api/quesion/delete/(:any)'] = 'api/ApiQuestionController/index/$1';
 $route['api/answers/(:any)'] = 'api/ApiAnswerController/index/$1';
 $route['api/answers/create/(:any)'] = 'api/ApiAnswerController/index/$1';
+$route['api/upvote/update/(:any)'] = 'api/ApiQuestionController/upvote/$1';
+$route['api/upvote/get'] = 'api/ApiQuestionController/upvote';
+$route['api/upvote/ans/(:any)'] = 'api/ApiAnswerController/ansUpVote/$1';
+$route['api/search'] = 'api/ApiSearchController/search';
