@@ -13,12 +13,7 @@ class ApiUserController extends Rest_Controller {
     }
 
     public function index_get($id){
-        //$id = $this->get('id');
-        // if($id == null){
-        //     $users = $this->UserModel->getUsers();
-        // }else{
-        //     $users = $this->UserModel->getUser($id);
-        // }
+
         $users = $this->UserModel->getUsers($id);
         if($users){
             $this->response([
@@ -99,21 +94,19 @@ class ApiUserController extends Rest_Controller {
     }
 
     public function login_post() {
-        // Get the post data
         $email = $this->post('email');
         $password = $this->post('password');
         
-        // Validate the post data
         if(!empty($email) && !empty($password)){
            
         
             $user = $this->UserModel->authenticate($email,$password);
             if($user){
-                
+                $data = $this->UserModel->getAuthUserId($email, $password);
                 $this->response([
                     'status' => TRUE,
                     'message' => 'User login successful.',
-                    'data' => $user
+                    'data' => $data[0]
                 ], REST_Controller::HTTP_OK);
             }else{
                 

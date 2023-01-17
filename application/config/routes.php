@@ -67,3 +67,7 @@ $route['api/upvote/update/(:any)'] = 'api/ApiQuestionController/upvote/$1';
 $route['api/upvote/get'] = 'api/ApiQuestionController/upvote';
 $route['api/upvote/ans/(:any)'] = 'api/ApiAnswerController/ansUpVote/$1';
 $route['api/search'] = 'api/ApiSearchController/search';
+$route['api/bookmarks/find/(:num)'] = 'api/ApiBookmarkController/find/$1';
+$route['api/bookmarks/add/(:num)/(:num)'] = 'api/ApiBookmarkController/add/$1/$1';
+$route['api/bookmarks/delete/(:num)/(:num)'] = 'api/ApiBookmarkController/remove/$1/$1';
+$route['api/profile/question/(:num)'] = 'api/ApiQuestionController/findUserQuestion/$1';

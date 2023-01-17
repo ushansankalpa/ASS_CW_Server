@@ -47,27 +47,6 @@ class ApiQuestionController extends Rest_Controller {
         }
     }
 
-    // public function index_put($id){
-    //     $data = [
-    //         'first_name' => $this->put('first_name'),
-    //         'last_name' => $this->put('last_name'),
-    //         'username' => $this->put('username'),
-    //         'email' => $this->put('email'),
-    //         'password' => $this->put('password')
-    //     ];
-    //     if($this->UserModel->updateUser($data, $id) ){
-    //         $this->response([
-    //             'status' => true,
-    //             'message' => 'data has been updated'
-    //         ], Rest_Controller::HTTP_NO_CONTENT);
-    //     }else{
-    //         $this->response([
-    //             'status' => false,
-    //             'message' => 'failed to update data'
-    //         ], Rest_Controller::HTTP_BAD_REQUEST);
-    //     }
-    // }
-
     public function index_delete($id){
         if($id == null){
             $this->response([
@@ -90,9 +69,7 @@ class ApiQuestionController extends Rest_Controller {
         }
     }
 
-    public function upVote_put($id){
-        //$question_id = $this->post('question_id');
-        
+    public function upVote_put($id){        
         if($this->QuestionModel->upVote($id) > 0){
             $this->response([
                 'status' => true,
@@ -119,5 +96,25 @@ class ApiQuestionController extends Rest_Controller {
                 'message' => 'id not found'
             ], Rest_Controller::HTTP_NOT_FOUND);
         }
+    }
+
+    public function findUserQuestion_get($userId){
+        $result_user = $this->QuestionModel->profileQuestions($userId);
+
+        if (count($result_user) > 0) {
+            $this->response(array(
+                "status" => TRUE,
+                "message"  => "data succfully sent",
+                "data" =>  $result_user
+            ), Rest_Controller::HTTP_OK);
+        } else {
+            $this->response(array(
+                "status" => TRUE,
+                "message"  => "No Data found !",
+                "data" =>  $result_user
+            ), Rest_Controller::HTTP_OK);
+        }
+
+
     }
 }

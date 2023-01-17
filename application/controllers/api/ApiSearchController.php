@@ -12,7 +12,7 @@ class ApiSearchController extends Rest_Controller {
 
     public function search_post(){
         $keyword = strip_tags($this->post('keyword'));
-        $results = $this->Search_model->search($keyword);
+        $results = $this->SearchModel->search($keyword);
         $this->response($results);
     }
 

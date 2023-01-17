@@ -6,12 +6,6 @@ class UserModel extends CI_Model{
     }
     
     public function getUsers($id){
-        // if($id === null){
-        //     return $this->db->get('users')->result_array();
-        // }else{
-        //     return $this->db->get_where('users', ['id' => $id])->result_array();
-        // }
-        // $this->db->where('id', $id);
         $query = $this->db->get_where('users',array('user_id' => $id));
         return $query->result_array();
     }
@@ -23,7 +17,6 @@ class UserModel extends CI_Model{
 
     public function updateUser($data, $id){
         $this->db->where('user_id', $id);
-        //$this->db->update('users', $data, ['id' => $id]);
         return  $this->db->update('users', $data);
     }
 
@@ -47,5 +40,11 @@ class UserModel extends CI_Model{
                 return false;
             }
         }
+    }
+
+    function getAuthUserId($email,$password)
+    {
+        $res = $this->db->get_where('users',array('email' => $email));
+		return $res->result_array();
     }
 }

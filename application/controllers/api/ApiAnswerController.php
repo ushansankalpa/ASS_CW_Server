@@ -53,9 +53,7 @@ class ApiAnswerController extends Rest_Controller{
         }
     }
 
-    public function ansUpVote_put($id){
-        //$question_id = $this->post('question_id');
-        
+    public function ansUpVote_put($id){        
         if($this->AnswerModel->ansUpVote($id) > 0){
             $this->response([
                 'status' => true,
