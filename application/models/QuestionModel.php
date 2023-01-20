@@ -20,12 +20,18 @@ class QuestionModel extends CI_Model{
         return $this->db->affected_rows();
     }
 
+    public function updateQuestion($data, $id){
+        $this->db->where('question_id', $id);
+        return  $this->db->update('questions', $data);
+    }
+
     public function updateUser($data, $id){
         $this->db->where('questions_id', $id);
         return  $this->db->update('questions', $data);
     }
 
     public function deleteQuestion($id){
+        $this->db->delete('answers', ['question_id' => $id]);
         $this->db->delete('questions', ['question_id' => $id]);
         return $this->db->affected_rows();
     }

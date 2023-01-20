@@ -47,6 +47,27 @@ class ApiQuestionController extends Rest_Controller {
         }
     }
 
+    public function update_put($id){
+        $data = [
+            'question_title' => $this->put('question_title'),
+            'question_des' => $this->put('question_des'),
+            'question_img' => $this->put('question_img'),
+            'question_votes' => $this->put('question_votes'),
+            'user_id' => $this->put('user_id'),
+        ];
+        if($this->QuestionModel->updateQuestion($data, $id) > 0){
+            $this->response([
+                'status' => true,
+                'message' => 'data has been updated'
+            ], Rest_Controller::HTTP_NO_CONTENT);
+        }else{
+            $this->response([
+                'status' => false,
+                'message' => 'failed to update data'
+            ], Rest_Controller::HTTP_BAD_REQUEST);
+        }
+    }
+
     public function index_delete($id){
         if($id == null){
             $this->response([

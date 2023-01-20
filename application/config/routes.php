@@ -60,6 +60,7 @@ $route['api/users/update/(:any)'] = 'api/ApiUserController/index/$1';
 $route['api/users/delete/(:any)'] = 'api/ApiUserController/index/$1';
 $route['api/questions'] = 'api/ApiQuestionController/index';
 $route['api/quesion/create/(:any)'] = 'api/ApiQuestionController/index/$1';
+$route['api/quesion/update/(:any)'] = 'api/ApiQuestionController/update/$1';
 $route['api/quesion/delete/(:any)'] = 'api/ApiQuestionController/index/$1';
 $route['api/answers/(:any)'] = 'api/ApiAnswerController/index/$1';
 $route['api/answers/create/(:any)'] = 'api/ApiAnswerController/index/$1';
